@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f4;
+      color: #333;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      position:sticky;
+      justify-content: space-between;
+      background-color: #f4f4f4;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-area img {
+      height: 70px;
+    }
+
+    .logo-area span {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #222;
+    }
+    nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+    .nav-center {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .nav-center button {
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-center button:hover,
+    .nav-center button.active {
+      background-color: #222;
+    }
+
+    .search-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-bar input,
+.nav-right input {
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 300px; /* slightly bigger */
+}
+
+.nav-right input {
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  gap: 1.5rem; /* This adds space between all items */
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+.nav-right .nav-link {
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-right .nav-link:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+
+   
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 2rem;
+    }
+
+    .story {
+      max-width: 1000px;
+      margin: 2rem auto;
+      font-size: 1.3rem;
+      line-height: 2;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .team-photos {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto;
+      flex-wrap: wrap;
+      padding: 0 1rem;
+    }
+
+    .team-member {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-member h3 {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Slideshow Section */
+    .slideshow {
+      max-width: 1000px;
+      margin: 2rem auto;
+      overflow: hidden;
+      position: relative;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .slideshow-images {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite ease-in-out;
+    }
+
+    .slideshow-images img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+   
+
+    @media (max-width: 768px) {
+      .nav-center, .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .slideshow-images img {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo-area">
+      <img src="th.jpeg" alt="Logo" />
+      <span>Trend Ware</span>
+    </div>
+    <div class="nav-center">
+      <button onclick="location.href='https://piyush200518.github.io/TrendWare/index.html'">Home</button>
+      <button data-filter="all">All</button>
+      <button data-filter="men's clothing">Men</button>
+      <button data-filter="women's clothing">Women</button>
+      <button data-filter="kids">Kids</button>
+      <button data-filter="genz">Gen Z</button>
+      <button onclick="location.href='https://piyush200518.github.io/TrendWare/about.html'">Our Team</button>
+      <button onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+    
+  
+      <div class="search-right">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search products...">
+        </div>
+        <a href="https://piyush200518.github.io/TrendWare/login.html">Login</a>
+        <a href="https://piyush200518.github.io/TrendWare/signup.html">Sign Up</a>
+      </div>
+    </nav>
+  
+
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <div class="slideshow-images">
+      <img src="motivational.jpeg" alt="slide1">
+    
+    </div>
+  </div>
+
+  <h1>Our Story</h1>
+
+  <div class="story" id="story-content">
+    <!-- Random story will appear here -->
+  </div>
+
+  <!-- Team Section -->
+  <div class="team-photos">
+    <div class="team-member">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Founder">
+      <h3>Piyush bansod<br>Founder</h3>
+    </div>
+    <div class="team-member">
+      <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Co-Founder">
+      <h3>Prashant raikvar<br>Co-Founder</h3>
+    </div>
+    <div class="team-member">
+      <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Developer">
+      <h3>Shreynik Jain <br>Lead Developer</h3>
+    </div>
+  </div>
+
+  <script>
+    const story = [
+      `Trend Ware was born on a chilly night in a small apartment when three college friends realized there was a huge gap in the fashion market for affordable, expressive streetwear. What started as scribbles on napkins quickly evolved into a full-blown dream.`,
+      `Our brand is inspired by the chaos and color of everyday life. We believe fashion is a voice, and every piece we create has a story behind it. From eco-conscious fabrics to bold prints, we want you to wear confidence.`,
+      `Our mission? Simple — redefine urban fashion for the new gen. Whether you're a minimalist or maximalist, a coder or a creator, we've got something stitched just for you.`,
+      `Three students from different corners of India, united by a shared vision, came up with this idea one evening. What started as a simple conversation soon turned into a mission, to bring opportunities and skills together in one seamless platform.`
+    ];
+    document.getElementById('story-content').innerText = story[Math.floor(Math.random() * story.length)];
+  </script>
+
+</body>
+</html>
