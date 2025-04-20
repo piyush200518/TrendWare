@@ -226,37 +226,44 @@
     </div>
   </div>
 
-  <script>
-    const productDetail = document.getElementById('product-detail');
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
+<div class="container">
+  <div id="product-detail" class="product-detail">
+    <!-- Product details will be inserted here -->
+  </div>
+</div>
 
-    fetch(`https://fakestoreapi.com/products/${productId}`)
-      .then(res => res.json())
-      .then(product => {
-        const randomDiscount = Math.floor(Math.random() * 20) + 5; // Random discount between 5% and 25%
-        const finalPrice = (product.price * 83).toFixed(0);
-        const discountedPrice = (finalPrice - (finalPrice * randomDiscount / 100)).toFixed(0);
+<script>
+  const productDetail = document.getElementById('product-detail');
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
 
-        productDetail.innerHTML = `
-          <div>
-            <img class="product-image" src="${product.image}" alt="${product.title}" />
-          </div>
-          <div class="product-info">
-            <div class="product-title">${product.title}</div>
-            <div class="product-category">${product.category}</div>
-            <div class="product-price">₹${discountedPrice} <span style="text-decoration:line-through;color:#999;font-size:1rem;margin-left:8px;">₹${finalPrice}</span></div>
-            <div class="discount">-${randomDiscount}% off</div>
-            <div class="product-description">${product.description}</div>
-            <button class="add-to-cart" onclick="redirectToPayment(${product.id})">Add to Cart</button>
+  fetch(`https://fakestoreapi.com/products/${productId}`)
+    .then(res => res.json())
+    .then(product => {
+      const randomDiscount = Math.floor(Math.random() * 20) + 5; // Random discount between 5% and 25%
+      const finalPrice = (product.price * 83).toFixed(0);
+      const discountedPrice = (finalPrice - (finalPrice * randomDiscount / 100)).toFixed(0);
 
-          </div>
-        `;
-        function redirectToPayment(id) {
+      productDetail.innerHTML = `
+        <div>
+          <img class="product-image" src="${product.image}" alt="${product.title}" />
+        </div>
+        <div class="product-info">
+          <div class="product-title">${product.title}</div>
+          <div class="product-category">${product.category}</div>
+          <div class="product-price">₹${discountedPrice} <span style="text-decoration:line-through;color:#999;font-size:1rem;margin-left:8px;">₹${finalPrice}</span></div>
+          <div class="discount">-${randomDiscount}% off</div>
+          <div class="product-description">${product.description}</div>
+          <button class="add-to-cart" onclick="redirectToPayment(${product.id})">Add to Cart</button>
+        </div>
+      `;
+    });
+
+  function redirectToPayment(id) {
     window.location.href = `https://piyush200518.github.io/TrendWare/payment.html?id=${id}`;
   }
-      });
-  </script>
+</script>
+
 
 </body>
 </html>
