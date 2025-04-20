@@ -6,6 +6,101 @@
   <title>Contact Us</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    position:sticky;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo-area img {
+    height: 70px;
+  }
+
+  .logo-area span {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #222;
+  }
+  nav {
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+
+
+  .nav-center {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .nav-center button {
+    padding: 0.7rem 1.4rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .nav-center button:hover,
+  .nav-center button.active {
+    background-color: #222;
+  }
+
+  .search-right {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.search-bar input,
+.nav-right input {
+padding: 0.8rem 1.2rem;
+font-size: 1.1rem;
+border-radius: 6px;
+border: 1px solid #ccc;
+width: 300px; /* slightly bigger */
+}
+
+.nav-right input {
+padding: 0.8rem 1.2rem;
+font-size: 1.1rem;
+border-radius: 6px;
+gap: 1.5rem; /* This adds space between all items */
+border: 1px solid #ccc;
+width: 300px;
+}
+
+.nav-right .nav-link {
+font-size: 1.1rem;
+text-decoration: none;
+color: #333;
+font-weight: bold;
+transition: color 0.3s;
+}
+
+.nav-right .nav-link:hover {
+color: #000;
+text-decoration: underline;
+}
+
+
+</style>
 <body>
   <!-- Navbar -->
   <nav>
