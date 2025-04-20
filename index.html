@@ -55,7 +55,7 @@
     }
 
     .nav-center button {
-      padding: 0.7rem 1.4rem;
+      padding: 0.6rem 1.2rem;
       font-size: 1rem;
       border: none;
       border-radius: 5px;
@@ -146,32 +146,46 @@
       font-weight: bold;
       color: #222;
     }
+  
+.carousel {
+  width: 100%;
+  max-width: 950px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-    @media (max-width: 900px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
+.slides {
+  display: flex;
+  animation: slide 10s infinite;
+}
 
-      .nav-center {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
+.slides img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
 
-      .search-bar input {
-        width: 100%;
-      }
 
-      .product-image {
-        height: 240px;
-      }
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
 
-      .search-right {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
+
+@keyframes slide {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+
   </style>
 </head>
 <body>
@@ -205,7 +219,15 @@
       <a href="https://piyush200518.github.io/TrendWare/signup.html">Sign Up</a>
     </div>
   </nav>
-
+<!-- Add this inside <body> just below the </nav> -->
+  <div class="carousel">
+    <div class="slides">
+      <img src="1.jpeg" alt="Slide 1">
+      <img src="4.png" alt="Slide 2">
+      <img src="2.png" alt="Slide 3">
+    </div>
+  </div>
+  
   <div class="container">
     <div id="product-list" class="product-grid">
       <!-- Products will be inserted here -->
