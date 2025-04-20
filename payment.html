@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Reusing your original styles */
+    /* Add extra styles for payment layout */
+    .payment-box {
+      background-color: #fff;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .quantity-selector input {
+      width: 60px;
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 0 10px;
+    }
+
+    .total-price {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .payment-methods {
+      margin-top: 2rem;
+    }
+
+    .payment-methods label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .payment-methods input[type="text"], .payment-methods input[type="number"] {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 0.5rem;
+    }
+
+    .pay-now {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #c61d1d;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reuse your existing navbar here -->
+  <nav>
+    <div class="logo-area" onclick="location.href='index.html'">
+      <img src="th.jpeg" alt="Logo">
+      <span>Trend Ware</span>
+    </div>
+    <div class="nav-center">
+      <button onclick="location.href='index.html'">Home</button>
+      <button data-filter="all">All</button>
+      <button data-filter="men's clothing">Men</button>
+      <button data-filter="women's clothing">Women</button>
+      <button data-filter="kids">Kids</button>
+      <button data-filter="genz">Gen Z</button>
+      <button onclick="location.href='about.html'">Our Team</button>
+      <button onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+    <div class="search-right">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search products" disabled>
+      </div>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="payment-detail" class="product-detail payment-box"></div>
+  </div>
+
+  <script>
+    const container = document.getElementById('payment-detail');
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    fetch(`https://fakestoreapi.com/products/${productId}`)
+      .then(res => res.json())
+      .then(product => {
+        const finalPrice = (product.price * 83).toFixed(0);
+
+        container.innerHTML = `
+          <div>
+            <img class="product-image" src="${product.image}" alt="${product.title}" />
+          </div>
+          <div class="product-info">
+            <div class="product-title">${product.title}</div>
+            <div class="product-price">Price per item: ₹<span id="unit-price">${finalPrice}</span></div>
+
+            <div class="quantity-selector">
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" value="1" min="1" onchange="updateTotal()"/>
+            </div>
+
+            <div class="total-price">Total: ₹<span id="total-price">${finalPrice}</span></div>
+
+            <div class="payment-methods">
+              <label><input type="radio" name="payment" checked> Cash on Delivery</label>
+
+              <label><input type="radio" name="payment"> Credit Card</label>
+              <input type="text" placeholder="Card Number" />
+              <input type="text" placeholder="Cardholder Name" />
+              <input type="number" placeholder="CVV" />
+
+              <label><input type="radio" name="payment"> UPI</label>
+              <input type="text" placeholder="UPI ID" />
+
+              <label><input type="radio" name="payment"> Net Banking</label>
+              <input type="text" placeholder="Bank Name" />
+              <input type="text" placeholder="Account Holder Name" />
+            </div>
+
+            <button class="pay-now">Pay Now</button>
+          </div>
+        `;
+      });
+
+    function updateTotal() {
+      const unitPrice = parseFloat(document.getElementById('unit-price').innerText);
+      const qty = parseInt(document.getElementById('quantity').value);
+      const total = unitPrice * qty;
+      document.getElementById('total-price').innerText = total;
+    }
+  </script>
+</body>
+</html>
