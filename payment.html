@@ -127,6 +127,54 @@
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
 
+    document.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('pay-now')) {
+    const qty = parseInt(document.getElementById('quantity').value);
+    const total = parseFloat(document.getElementById('total-price').innerText);
+    const paymentMethods = document.getElementsByName('payment');
+    let selectedPayment = "";
+    paymentMethods.forEach(method => {
+      if (method.checked) selectedPayment = method.value || method.nextSibling.textContent.trim();
+    });
+
+    let address = '';
+    if (selectedPayment === "Cash on Delivery") {
+      address = document.getElementById('cod-address').value;
+      if (!address.trim()) {
+        alert("Please enter your delivery address.");
+        return;
+      }
+    }
+
+    // Send to backend
+    const paymentData = {
+      productId,
+      quantity: qty,
+      totalAmount: total,
+      paymentMethod: selectedPayment,
+      address
+    };
+
+    try {
+      const res = await fetch('https://qr-scanner-backend-k4yr.onrender.com/payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(paymentData)
+      });
+
+      const data = await res.json();
+      alert(data.message || 'Payment submitted successfully!');
+
+      if (res.ok) {
+        window.location.href = "https://piyush200518.github.io/TrendWare/success.html";
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error processing payment");
+    }
+  }
+});
+
     fetch(`https://fakestoreapi.com/products/${productId}`)
       .then(res => res.json())
       .then(product => {
@@ -152,6 +200,8 @@ container.innerHTML = `
     <div class="payment-methods">
       <div class="payment-group">
         <label><input type="radio" name="payment" checked> Cash on Delivery</label>
+          <label><input type="radio" name="payment" value="Cash on Delivery" checked> Cash on Delivery</label><br>
+  <input type="text" id="cod-address" placeholder="Enter delivery address" />
       </div>
 
       <div class="payment-group">
@@ -164,6 +214,7 @@ container.innerHTML = `
       <div class="payment-group">
         <label><input type="radio" name="payment"> UPI</label><br>
         <input type="text" placeholder="UPI ID" />
+
       </div>
 
       <div class="payment-group">
