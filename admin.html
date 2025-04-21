@@ -2,33 +2,148 @@
 <html>
 <head>
   <title>All Payments</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
+    nav {
+      display: flex;
+      align-items: center;
+      position: sticky;
+      justify-content: space-between;
+      background-color: #f4f4f4;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-area img {
+      height: 70px;
+    }
+
+    .logo-area span {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    .nav-center button {
+      padding: 0.7rem 1.4rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-center button:hover,
+    .nav-center button.active {
+      background-color: #222;
+    }
+
+    .search-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .search-bar input,
+    .nav-right input {
+      padding: 0.8rem 1.2rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 300px;
+    }
+
+    .nav-right .nav-link {
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-right .nav-link:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
     body {
       font-family: Arial;
       padding: 20px;
       background-color: #f2f2f2;
     }
+
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
       margin-top: 20px;
       background: white;
     }
+
     th, td {
       text-align: left;
       padding: 12px;
       border: 1px solid #ccc;
     }
+
     th {
       background-color: #222;
       color: white;
     }
-    h2 {
-      color: #333;
-    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo-area">
+      <img src="th.jpeg" alt="Logo" />
+      <span>Trend Ware</span>
+    </div>
+
+    <div class="nav-center">
+      <button onclick="location.href='https://piyush200518.github.io/TrendWare/index.html'">Home</button>
+      <button data-filter="all">All</button>
+      <button data-filter="men's clothing">Men</button>
+      <button data-filter="women's clothing">Women</button>
+      <button data-filter="kids">Kids</button>
+      <button data-filter="genz">Gen Z</button>
+      <button onclick="location.href='https://piyush200518.github.io/TrendWare/about.html'">Our Team</button>
+      <button onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+
+    <div class="search-right">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search products...">
+      </div>
+      <a href="https://piyush200518.github.io/TrendWare/login.html">Login</a>
+      <a href="https://piyush200518.github.io/TrendWare/signup.html">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Payment Records Table -->
   <h2>All Payment Records</h2>
   <table id="paymentTable">
     <thead>
@@ -51,7 +166,7 @@
   </table>
 
   <script>
-    fetch('https://qr-scanner-backend-k4yr.onrender.com/payments') // Replace with your actual backend URL
+    fetch('https://your-api-url.com/payments') // 🔁 Replace with your real API URL
       .then(response => response.json())
       .then(data => {
         const tbody = document.querySelector('#paymentTable tbody');
